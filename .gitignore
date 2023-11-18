@@ -91,7 +91,7 @@ wheels/
 /wandb/
 .installed.cfg
 *.egg
-
+dataSet
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

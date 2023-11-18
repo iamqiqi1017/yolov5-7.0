@@ -489,13 +489,13 @@ def add_tflite_metadata(file, metadata, num_outputs):
 
 @smart_inference_mode()
 def run(
-        data=ROOT / 'data/coco128.yaml',  # 'dataset.yaml path'
-        weights=ROOT / 'yolov5s.pt',  # weights path
-        imgsz=(640, 640),  # image (height, width)
+        data=ROOT / 'data.yaml',  # 'dataset.yaml path'
+        weights=ROOT / 'csgo.pt',  # weights path
+        imgsz=(320, 320),  # image (height, width)
         batch_size=1,  # batch size
-        device='cpu',  # cuda device, i.e. 0 or 0,1,2,3 or cpu
-        include=('torchscript', 'onnx'),  # include formats
-        half=False,  # FP16 half-precision export
+        device='0',  # cuda device, i.e. 0 or 0,1,2,3 or cpu
+        include=('engine'),  # include formats
+        half=True,  # FP16 half-precision export
         inplace=False,  # set YOLOv5 Detect() inplace=True
         keras=False,  # use Keras
         optimize=False,  # TorchScript: optimize for mobile
@@ -504,7 +504,7 @@ def run(
         simplify=False,  # ONNX: simplify model
         opset=12,  # ONNX: opset version
         verbose=False,  # TensorRT: verbose log
-        workspace=4,  # TensorRT: workspace size (GB)
+        workspace=8,  # TensorRT: workspace size (GB)
         nms=False,  # TF: add NMS to model
         agnostic_nms=False,  # TF: add agnostic NMS to model
         topk_per_class=100,  # TF.js NMS: topk per class to keep
@@ -611,11 +611,11 @@ def run(
 
 def parse_opt():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data', type=str, default=ROOT / 'data/coco128.yaml', help='dataset.yaml path')
-    parser.add_argument('--weights', nargs='+', type=str, default=ROOT / 'yolov5s.pt', help='model.pt path(s)')
-    parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[640, 640], help='image (h, w)')
+    parser.add_argument('--data', type=str, default=ROOT / 'data.yaml', help='dataset.yaml path')
+    parser.add_argument('--weights', nargs='+', type=str, default=ROOT / 'csgo.pt', help='model.pt path(s)')
+    parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[320, 320], help='image (h, w)')
     parser.add_argument('--batch-size', type=int, default=1, help='batch size')
-    parser.add_argument('--device', default='cpu', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
+    parser.add_argument('--device', default='0', help='cuda device, i.e. 0 or 0,1,2,3 or cpu')
     parser.add_argument('--half', action='store_true', help='FP16 half-precision export')
     parser.add_argument('--inplace', action='store_true', help='set YOLOv5 Detect() inplace=True')
     parser.add_argument('--keras', action='store_true', help='TF: use Keras')
@@ -625,7 +625,7 @@ def parse_opt():
     parser.add_argument('--simplify', action='store_true', help='ONNX: simplify model')
     parser.add_argument('--opset', type=int, default=12, help='ONNX: opset version')
     parser.add_argument('--verbose', action='store_true', help='TensorRT: verbose log')
-    parser.add_argument('--workspace', type=int, default=4, help='TensorRT: workspace size (GB)')
+    parser.add_argument('--workspace', type=int, default=8, help='TensorRT: workspace size (GB)')
     parser.add_argument('--nms', action='store_true', help='TF: add NMS to model')
     parser.add_argument('--agnostic-nms', action='store_true', help='TF: add agnostic NMS to model')
     parser.add_argument('--topk-per-class', type=int, default=100, help='TF.js NMS: topk per class to keep')

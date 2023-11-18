@@ -1,0 +1,13 @@
+train: C:/qiqi/Project/MyProject/yolov5-7.0/dataSet/train/images
+val: C:/qiqi/Project/MyProject/yolov5-7.0/dataSet/valid/images
+test: C:/qiqi/Project/MyProject/yolov5-7.0/dataSet/test/images
+
+nc: 2
+names: ['CT', 'T']
+
+roboflow:
+  workspace: new-workspace-rp0z0
+  project: csgo-train-yolo-v5
+  version: 5
+  license: Public Domain
+  url: https://universe.roboflow.com/new-workspace-rp0z0/csgo-train-yolo-v5/dataset/5
